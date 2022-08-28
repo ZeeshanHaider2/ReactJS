@@ -9,13 +9,25 @@ class App extends React.Component{
     super(props);
 
     this.state={
-      SearchResults:[{name:'name1', artist:'artist1',album:'album',id:'id1'},
+      searchResults:[{name:'name1', artist:'artist1',album:'album',id:'id1'},
       {name:'name2',artist:'artist2',album:'album2',id:'id2'},{name:'name3',artist:'artist3',album:'album3',id:'id3'}],
-      PlayListName : 'My PlayList',
-      PlayListTracks:[{name:'PlayListName1', artist:'PlayListArtist1',album:'PlayListAlbum1',id:'id4'},
+      playlistName : 'My PlayList',
+      playlistTracks:[{name:'PlayListName1', artist:'PlayListArtist1',album:'PlayListAlbum1',id:'id4'},
       {name:'PlayListName2', artist:'PlayListArtist2',album:'PlayListAlbum2',id:'id5'},
       {name:'PlayListName3', artist:'PlayListArtist3',album:'PlayListAlbum3',id:'id6'}]
     }
+    this.addTrack = this.addTrack.bind(this);
+  }
+
+  
+
+  addTrack(track){
+    let tracks = this.state.playlistTracks;
+    if (tracks.find(savedTrack=>savedTrack.id===track.id)){
+      return;
+    }
+    tracks.push(track);
+    this.setState({playlistTracks:tracks});
   }
   render(){
   return(
@@ -24,9 +36,10 @@ class App extends React.Component{
       <div className="App">
         <SearchBar/> 
       <div className="App-playlist">
-        <SearchResults SearchResults={this.state.SearchResults}/> 
-        <Playlist PlayListName= {this.setState.PlayListName}
-                  PlayListTracks= {this.state.PlayListTracks}/> 
+        <SearchResults searchResults={this.state.searchResults}
+                       onAdd = {this.addTrack}/> 
+        <Playlist playListName= {this.setState.playlistName}
+                  playlistTracks= {this.state.playlistTracks}/> 
         </div>
       </div>
    </div>
