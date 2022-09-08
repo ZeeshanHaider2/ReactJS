@@ -65,17 +65,25 @@ const Spotify = {
      ).then(response => response.json()
      ).then(jsonResponse => {
         userId = jsonResponse.id;
-        return fetch(`https://:api.spotify.com//v1/users/${userId}/playlists`,
+        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`,
         {
             headers : headers,
             method: 'POST',
             body: JSON.stringify ({name:name})
-        });
-
+        }).then(response => response.json()
+        ).then(jsonResponse => {
+            const playlistId = jsonResponse.id;
+            return fetch(`https//:api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
+            {
+                headers : headers,
+                method: 'POST',
+                body: JSON.stringify ({uris:trackUris})
+            })
+        })
      })
     }
 
 }
-///v1/users/{user_id}/playlists/{playlist_id}/tracks
+
 
 export default Spotify;
