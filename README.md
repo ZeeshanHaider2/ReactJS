@@ -1,6 +1,18 @@
-A app that uses React components, passing state, and requests with the Spotify API to build a website that allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account.
-
+App: A app that uses React components, passing state, and requests with the Spotify API to build a website that allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account.
 http://uncovered-zipper.surge.sh/
+
+Note: you should have a Spotify account before you try to use this app. 
+
+Setup:
+
+Pull code to local machine
+Create ".config.json" in "/src"
+.config.json should have the following format:
+{ "clientID" : "Your-Spotify-app-Client-ID", "redirectURI" : "Your-desired-redirect-URI" }
+
+A defult value for the redirect URI could be "http://localhost:3000/"
+From the command line/terminal, run "npm install" anywhere in the Jamming folder
+"npm install" may take a moment--wait for the terminal to give you back control
 
 
 
